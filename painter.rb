@@ -10,12 +10,16 @@ class Painter
   end
 
   def paintings
-    Painting.all_shapes
+    Painting.all_shapes.select do |painting|
+      painting.painter == self
+    end
   end
 
   def make_paintings(title, width, height)
     Painting.new(title,width,height,self)
   end
+
+
 
 end
 
