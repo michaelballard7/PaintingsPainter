@@ -1,5 +1,7 @@
 class Painter
 
+  @@all_painters = []
+
   attr_accessor :name
   attr_reader :dob
 
@@ -10,17 +12,24 @@ class Painter
   end
 
   def paintings
-    Painting.all_shapes.select do |painting|
+    # this line establishes the connetion between the Painting class
+    Painting.all_paintings.select do |painting|
       painting.painter == self
     end
   end
 
   def make_paintings(title, width, height)
+    # this line instantiates a Painting, and makes a connection between the Painting class
     Painting.new(title,width,height,self)
   end
 
+  def galleries
+    self.paintings.collect {|paintings| painting.gallery}
+  end
 
-
+  def self.all_painters
+    @@all_painters
+  end
 end
 
 
